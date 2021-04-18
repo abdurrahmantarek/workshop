@@ -20,7 +20,7 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "aabb@test.coma",
+							"value": "test@test.com",
 							"description": "required|string|email|max:100|unique:users",
 							"type": "text"
 						},
@@ -37,13 +37,13 @@
 						},
 						{
 							"key": "birth_of_date",
-							"value": "1999-04-22",
+							"value": "1971-01-01",
 							"description": "required|date_format:Y-m-d|before:10 years ago",
 							"type": "text"
 						},
 						{
 							"key": "name",
-							"value": "Ahmed Tarik",
+							"value": "Mr. Sammie Weissnat",
 							"description": "required|string|between:2,100",
 							"type": "text"
 						},
@@ -104,13 +104,13 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "tes3s2t3ddd4ded2ddefddd@test.com",
+							"value": "test@test.com",
 							"description": "required|email",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456789",
+							"value": "0123456789",
 							"description": "required|string|min:6",
 							"type": "text"
 						}
@@ -153,7 +153,7 @@
 					"formdata": [
 						{
 							"key": "text",
-							"value": "fsdfsdfsd",
+							"value": "test test test test test t",
 							"description": "required|string|max:140",
 							"type": "text"
 						}
@@ -195,7 +195,7 @@
 					"formdata": [
 						{
 							"key": "following_user_id",
-							"value": "21",
+							"value": "1",
 							"description": "required | exists:users,id | new AnotherUserRule()",
 							"type": "text"
 						}
