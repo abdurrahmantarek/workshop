@@ -1,0 +1,85 @@
+version: '3'
+services:
+
+  #PHP Service
+  ten-degrees_app:
+    build:
+      args:
+        user: abdurrahman
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: ten-degrees_app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: ten-degrees_app
+      SERVICE_TAGS: dev
+    working_dir: /home/abdurrahman/Desktop/phpserver/ten-degrees
+    volumes:
+      - ./:/home/abdurrahman/Desktop/phpserver/ten-degrees
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - ten-degrees-app-network
+
+  #Nginx Service
+  ten-degrees_webserver:
+    image: nginx:alpine
+    container_name: ten-degrees_webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/home/abdurrahman/Desktop/phpserver/ten-degrees
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - ten-degrees-app-network
+
+  #MySQL Service
+  ten-degrees_db:
+    image: mysql:5.7.22
+    container_name: ten-degrees_db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ten-degrees
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ten-degrees_data_db:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - ten-degrees-app-network
+
+  #PHPMYADMIN Service
+
+  ten-degrees_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - ten-degrees_db:ten-degrees_db
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: ten-degrees_db
+    restart: always
+    depends_on:
+      - ten-degrees_db
+    networks:
+      - ten-degrees-app-network
+
+#Docker Networks
+networks:
+  ten-degrees-app-network:
+    driver: bridge
+#Volumes
+volumes:
+  ten-degrees_data_db:
+    driver: local

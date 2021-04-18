@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "96091739-a254-4b7d-a9be-677bf7b82e48",
+		"name": "Ten-degrees",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "aabb@test.coma",
+							"description": "required|string|email|max:100|unique:users",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "0123456789",
+							"description": "required|string|confirmed|min:6",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "0123456789",
+							"type": "text"
+						},
+						{
+							"key": "birth_of_date",
+							"value": "1999-04-22",
+							"description": "required|date_format:Y-m-d|before:10 years ago",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Ahmed Tarik",
+							"description": "required|string|between:2,100",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"description": "required|image|mimes:jpeg,png,jpg|max:1000",
+							"type": "file",
+							"src": "/home/abdurrahman/Pictures/Screenshot from 2021-04-15 22-01-09.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json();",
+							"pm.environment.set('token', res.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer CeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8wLjAuMC4wXC9hcGlcL2F1dGhcL3JlZ2lzdGVyIiwiaWF0IjoxNjE4NjE4MTYxLCJleHAiOjE2MTg2MjE3NjEsIm5iZiI6MTYxODYxODE2MSwianRpIjoiTEljV0czN0ZaTVlCYlVycSIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.QPSL4nIFmTttTAfT_nERrHbFLEQxqfypuPBIgjiuOM8"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "tes3s2t3ddd4ded2ddefddd@test.com",
+							"description": "required|email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"description": "required|string|min:6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tweet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "fsdfsdfsd",
+							"description": "required|string|max:140",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0/api/tweet",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"path": [
+						"api",
+						"tweet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "following another User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "following_user_id",
+							"value": "21",
+							"description": "required | exists:users,id | new AnotherUserRule()",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0/api/follow",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"path": [
+						"api",
+						"follow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Report",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://0.0.0.0/api/report",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"path": [
+						"api",
+						"report"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
