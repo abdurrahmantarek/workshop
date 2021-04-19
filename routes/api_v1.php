@@ -19,7 +19,6 @@ Route::group([
 
     'middleware' => 'api',
     'prefix' => 'auth',
-    'namespace' => 'App\Http\Controllers\Api'
 
 ], function () {
 
@@ -32,7 +31,6 @@ Route::group([
 Route::group([
 
     'middleware' => 'auth:api',
-    'namespace' => 'App\Http\Controllers\Api'
 
 ], function () {
 

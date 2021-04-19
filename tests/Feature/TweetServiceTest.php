@@ -31,7 +31,7 @@ class TweetServiceTest extends TestCase
 
         $response = $this->withoutExceptionHandling()
             ->withHeaders(['Accept' => 'application/json'])
-            ->post('api/tweet', $tweetRaw);
+            ->post('api/v1/tweet', $tweetRaw);
 
         $tweetResource = TweetResource::make(Tweet::first())->response()->getData(true);
 
@@ -49,7 +49,7 @@ class TweetServiceTest extends TestCase
 
         $response = $this
             ->withHeaders(['Accept' => 'application/json'])
-            ->post('api/tweet', $tweetRaw);
+            ->post('api/v1/tweet', $tweetRaw);
         $this->assertGuest();
 
         $response->assertStatus(401);
@@ -67,7 +67,7 @@ class TweetServiceTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $response = $this->withHeaders(['Accept' => 'application/json'])->post('api/tweet', $tweetRaw);
+        $response = $this->withHeaders(['Accept' => 'application/json'])->post('api/v1/tweet', $tweetRaw);
 
         $response->assertStatus(422);
 
@@ -94,7 +94,7 @@ class TweetServiceTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $response = $this->withHeaders(['Accept' => 'application/json'])->post('api/tweet', $tweetRaw);
+        $response = $this->withHeaders(['Accept' => 'application/json'])->post('api/v1/tweet', $tweetRaw);
 
         $response->assertStatus(422);
 

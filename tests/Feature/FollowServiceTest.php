@@ -31,7 +31,7 @@ class FollowServiceTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->withoutExceptionHandling()
-            ->post('api/follow', [
+            ->post('api/v1/follow', [
                 'user_id' => $user->id,
                 'following_user_id' => $anotherUser->id
             ]);
@@ -49,7 +49,7 @@ class FollowServiceTest extends TestCase
         $this->actingAs($user);
 
         $response =
-            $this->withHeaders(['Accept' => 'application/json'])->post('api/follow', [
+            $this->withHeaders(['Accept' => 'application/json'])->post('api/v1/follow', [
                 'user_id' => $user->id,
                 'following_user_id' => $user->id
             ]);

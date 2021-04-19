@@ -26,7 +26,7 @@ class AuthServiceTest extends TestCase
         ]);
 
         $response = $this->withoutExceptionHandling()
-            ->post('api/auth/register', $userRaw);
+            ->post('api/v1/auth/register', $userRaw);
 
         $userResource = UserResource::make(User::first())->response()->getData(true);
 
@@ -38,7 +38,7 @@ class AuthServiceTest extends TestCase
         $user = User::factory()->create();
 
          $response = $this->withoutExceptionHandling()
-            ->post('api/auth/login', [
+            ->post('api/v1/auth/login', [
                 'email' => $user->email,
                 'password' => '123456789'
             ]);
@@ -58,7 +58,7 @@ class AuthServiceTest extends TestCase
         for($i = 0;  $i <= 6; $i++) {
 
             $response = $this->withoutExceptionHandling()
-                ->post('api/auth/login', [
+                ->post('api/v1/auth/login', [
                     'email' => $user->email,
                     'password' => '12345678'
                 ]);
