@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 
+use App\Repositories\Interfaces\TweetInterface;
+use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\TweetRepository;
 use App\Repositories\UserRepository;
 use PDF;
@@ -10,7 +12,7 @@ class ReportService {
     protected $userRepository;
     protected $tweetRepository;
 
-    public function __construct(UserRepository $userRepository, TweetRepository $tweetRepository)
+    public function __construct(UserInterface $userRepository, TweetInterface $tweetRepository)
     {
         $this->userRepository = $userRepository;
         $this->tweetRepository = $tweetRepository;
