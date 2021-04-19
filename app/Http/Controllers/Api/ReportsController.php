@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\ReportService;
 use Exception;
+use PDF;
 
 class ReportsController extends Controller
 {
@@ -19,7 +20,9 @@ class ReportsController extends Controller
     {
         try {
 
-            return $this->reportService->downloadPdf();
+            $pdf = $this->reportService->generatePdf();
+
+            return $pdf->download();
 
         }catch (Exception $exception) {
 

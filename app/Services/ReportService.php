@@ -19,14 +19,12 @@ class ReportService {
     }
 
 
-    public function downloadPdf()
+    public function generatePdf()
     {
 
         $pdfInfo = $this->pdfInfo();
 
-        $pdfReport =  $this->generatePdf($pdfInfo);
-
-        return $pdfReport->download();
+        return PDF::loadView('reports.pdf-report', $pdfInfo);
     }
 
     private function pdfInfo()
@@ -39,9 +37,4 @@ class ReportService {
         ];
     }
 
-    private function generatePdf($data)
-    {
-
-        return PDF::loadView('reports.pdf-report', $data);
-    }
 }

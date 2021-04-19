@@ -36,8 +36,8 @@ Route::group([
 
 ], function () {
 
-    Route::apiResource('tweet', 'TweetsController@store')->only('store');
-    Route::apiResource('follow', 'FollowsController@store')->only('store');
-    Route::post('report', 'ReportsController@report');
+    Route::apiResource('tweet', 'TweetsController')->only('store');
+    Route::apiResource('follow', 'FollowsController')->only('store');
+    Route::get('report', 'ReportsController@report');
 
 });
