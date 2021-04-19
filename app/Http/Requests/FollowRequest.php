@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AlreadyFollowedRule;
 use App\Rules\AnotherUserRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,7 +27,7 @@ class FollowRequest extends FormRequest
     {
 
         return [
-            'following_user_id' => ["required", "exists:users,id", new AnotherUserRule()]
+            'following_user_id' => ["required", "exists:users,id", new AnotherUserRule(), new AlreadyFollowedRule()]
         ];
     }
 }

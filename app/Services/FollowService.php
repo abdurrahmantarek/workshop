@@ -18,15 +18,6 @@ class FollowService{
 
     public function followAnotherUser($followData)
     {
-
-        if($this->exists($followData)) {
-
-            throw ValidationException::withMessages([
-                'message' => 'You Already Following This User'
-            ]);
-
-        }
-
         $followData['user_id'] = auth()->id();
 
         return $this->followRepository->store($followData);
