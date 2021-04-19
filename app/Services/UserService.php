@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\UserRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -9,7 +10,7 @@ class UserService{
 
     protected $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserInterface $userRepository)
     {
         $this->userRepository = $userRepository;
     }

@@ -4,13 +4,14 @@ namespace App\Services;
 
 use App\Http\Requests\FollowRequest;
 use App\Repositories\FollowRepository;
+use App\Repositories\Interfaces\FollowInterface;
 use Illuminate\Validation\ValidationException;
 
 class FollowService{
 
     protected $followRepository;
 
-    public function __construct(FollowRepository $followRepository)
+    public function __construct(FollowInterface $followRepository)
     {
         $this->followRepository = $followRepository;
     }

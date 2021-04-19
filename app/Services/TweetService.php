@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use App\Repositories\Interfaces\TweetInterface;
 use App\Repositories\TweetRepository;
 
 class TweetService {
 
     protected $tweetRepository;
 
-    public function __construct(TweetRepository $tweetRepository)
+    public function __construct(TweetInterface $tweetRepository)
     {
         $this->tweetRepository = $tweetRepository;
     }
