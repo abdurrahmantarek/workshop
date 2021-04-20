@@ -33,7 +33,7 @@ class AlreadyFollowedRule implements Rule
             'following_user_id' => $value
         ]);
 
-//        return !auth()->user()->follows()->whereFollowingUserId($value)->exists();
+        //return !auth()->user()->follows()->whereFollowingUserId($value)->exists();
 
     }
 
