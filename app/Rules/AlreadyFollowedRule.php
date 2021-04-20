@@ -2,7 +2,9 @@
 
 namespace App\Rules;
 
+use App\Repositories\Interfaces\FollowInterface;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\App;
 
 class AlreadyFollowedRule implements Rule
 {
@@ -24,7 +26,15 @@ class AlreadyFollowedRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !auth()->user()->follows()->whereFollowingUserId($value)->exists();
+        $followRepository = App::make(FollowInterface::class);
+
+        return !$followRepository->exist([
+            'user_id' => auth()->id(),
+            'following_user_id' => $value
+        ]);
+
+//        return !auth()->user()->follows()->whereFollowingUserId($value)->exists();
+
     }
 
     /**

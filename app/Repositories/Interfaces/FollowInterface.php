@@ -7,6 +7,6 @@ interface FollowInterface {
 
     public function store($data);
 
-    public function exist($followingUserId, $userId);
+    public function exist($attributes);
 
 }
