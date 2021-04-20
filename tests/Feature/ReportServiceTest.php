@@ -18,7 +18,7 @@ class ReportServiceTest extends TestCase
      *
      * @return void
      */
-    public function testUserCanDownloadPdf()
+    public function testAuthenticatedUserCanDownloadPdf()
     {
         $user = User::factory()->create();
 
@@ -36,6 +36,17 @@ class ReportServiceTest extends TestCase
             ->get('api/v1/report')
             ->assertSuccessful()
             ->assertSeeText('THE_PDF_BINARY_DATA');
+    }
+
+    public function testUnAuthenticatedUserCantDownloadPdfReport()
+    {
+        $response = $this
+            ->withHeaders(['Accept' => 'application/json'])
+            ->get('api/v1/report');
+
+        $this->assertGuest();
+
+        $response->assertStatus(401);
     }
 
 }

@@ -7,7 +7,6 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
-use App\Traits\AuthenticatesUsers;
 use Exception;
 use Illuminate\Validation\ValidationException;
 

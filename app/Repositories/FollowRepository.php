@@ -24,4 +24,9 @@ class FollowRepository implements FollowInterface {
     {
         return $this->model->whereUserId($attributes['user_id'])->whereFollowingUserId($attributes['following_user_id'])->exists();
     }
+
+    public function notExist($attributes)
+    {
+        return !$this->model->whereUserId($attributes['user_id'])->whereFollowingUserId($attributes['following_user_id'])->exists();
+    }
 }
