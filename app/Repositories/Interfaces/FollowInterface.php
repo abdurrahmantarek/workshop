@@ -9,4 +9,6 @@ interface FollowInterface {
 
     public function exist($attributes);
 
+    public function notExist($attributes);
+
 }

@@ -24,9 +24,4 @@ class FollowService{
 
 
     }
-
-    public function exists($followData)
-    {
-        return $this->followRepository->exist($followData['following_user_id'], auth()->id());
-    }
 }
