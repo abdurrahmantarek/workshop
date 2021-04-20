@@ -7,13 +7,13 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
+use App\Traits\AuthenticatesUsers;
 use Exception;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
     protected $authService;
-
 
     public function __construct(AuthService $authService)
     {
@@ -23,24 +23,17 @@ class AuthController extends Controller
     public function login(UserLoginRequest $request)
     {
 
-        try {
-
-            $userToken = $this->authService->login($request);
+        if($userToken =  $this->authService->login($request->validated())) {
 
             return response()->json([
                 'data' => UserResource::make(auth()->user()),
                 'token' => $userToken,
             ]);
 
-        } catch (ValidationException $exception) {
+        } else {
 
-            return response()->json(['error' => $exception->errors()], 422 );
-
-        } catch (Exception $exception) {
-
-            return response()->json(['error' => $exception->getMessage()], 500 );
+            return response()->json(['error' => [trans('auth.failed')]], 422);
         }
-
     }
 
     public function register(UserRegisterRequest $request)

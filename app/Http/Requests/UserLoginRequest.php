@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ThrottleRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserLoginRequest extends FormRequest
@@ -24,8 +25,9 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => ['required', 'email', new ThrottleRule('email', $maxAttempts = 5, $minutes = 30),],
             'password' => 'required|string|min:6',
+
         ];
     }
 }

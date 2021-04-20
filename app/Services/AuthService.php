@@ -2,15 +2,9 @@
 
 namespace App\Services;
 
-
-use App\Traits\AuthenticatesUsers;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthService{
-
-    use AuthenticatesUsers {
-
-        AuthenticatesUsers::login AS jwtLogin;
-    }
 
     protected $userService;
 
@@ -20,10 +14,9 @@ class AuthService{
 
     }
 
-    public function login($request)
+    public function login($userData)
     {
-
-        return $this->jwtLogin($request);
+         return JWTAuth::attempt($userData);
     }
 
     public function register($userData)

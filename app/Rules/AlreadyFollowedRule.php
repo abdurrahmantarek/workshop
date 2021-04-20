@@ -26,7 +26,7 @@ class AlreadyFollowedRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $followRepository = App::make(FollowInterface::class);
+        $followRepository = app(FollowInterface::class);
 
         return !$followRepository->exist([
             'user_id' => auth()->id(),

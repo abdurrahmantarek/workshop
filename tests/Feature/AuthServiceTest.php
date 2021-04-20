@@ -38,6 +38,7 @@ class AuthServiceTest extends TestCase
         $user = User::factory()->create();
 
          $response = $this->withoutExceptionHandling()
+            ->withHeaders(['Accept' => 'application/json'])
             ->post('api/v1/auth/login', [
                 'email' => $user->email,
                 'password' => '123456789'
@@ -55,12 +56,13 @@ class AuthServiceTest extends TestCase
     {
         $user = User::factory()->create();
 
-        for($i = 0;  $i <= 6; $i++) {
+        for($i = 0;  $i <= 5; $i++) {
 
-            $response = $this->withoutExceptionHandling()
+            $response = $this->withExceptionHandling()
+                ->withHeaders(['Accept' => 'application/json'])
                 ->post('api/v1/auth/login', [
                     'email' => $user->email,
-                    'password' => '12345678'
+                    'password' => '123456789'
                 ]);
 
 
@@ -69,8 +71,9 @@ class AuthServiceTest extends TestCase
         $response->assertStatus(422);
 
         $response->assertJson([
-            "error" => [
-                "throttle" => ['Too many login attempts. Please try again in 30 Minutes.']
+            "message" => "The given data was invalid.",
+            "errors" => [
+                "email" => ['Too many login attempts. Please try again in 30 Minutes.']
             ]
         ]);
 
