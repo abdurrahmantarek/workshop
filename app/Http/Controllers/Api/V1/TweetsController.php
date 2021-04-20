@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TweetRequest;
-use App\Http\Resources\TweetResource;
+use App\Http\Resources\API\V1\TweetResource;
 use App\Services\TweetService;
 use Exception;
 

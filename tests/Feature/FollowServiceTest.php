@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Resources\FollowResource;
+use App\Http\Resources\API\V1\FollowResource;
 use App\Http\Resources\UserResource;
 use App\Models\Follow;
 use App\Models\Tweet;

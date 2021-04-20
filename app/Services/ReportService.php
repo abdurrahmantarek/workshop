@@ -24,7 +24,9 @@ class ReportService {
 
         $pdfInfo = $this->pdfInfo();
 
-        return PDF::loadView('reports.pdf-report', $pdfInfo);
+        $pdf = PDF::loadView('reports.pdf-report', $pdfInfo);
+
+        return $pdf;
     }
 
     private function pdfInfo()

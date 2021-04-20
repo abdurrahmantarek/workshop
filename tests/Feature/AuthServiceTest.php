@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Resources\UserResource;
+use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;

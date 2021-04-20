@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Resources\TweetResource;
+use App\Http\Resources\API\V1\TweetResource;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

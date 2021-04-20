@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FollowRequest;
-use App\Http\Resources\FollowResource;
+use App\Http\Resources\API\V1\FollowResource;
 use App\Services\FollowService;
 use Exception;
 use Illuminate\Validation\ValidationException;

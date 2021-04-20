@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\API\V1\UserResource;
 use App\Services\AuthService;
 use Exception;
 
