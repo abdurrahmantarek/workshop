@@ -20,13 +20,8 @@ class FollowRepository implements FollowInterface {
         return $this->model->create($data);
     }
 
-    public function exist($attributes)
+    public function isFollow($userId, $followingUserId)
     {
-        return $this->model->whereUserId($attributes['user_id'])->whereFollowingUserId($attributes['following_user_id'])->exists();
-    }
-
-    public function notExist($attributes)
-    {
-        return !$this->model->whereUserId($attributes['user_id'])->whereFollowingUserId($attributes['following_user_id'])->exists();
+        return $this->model->whereUserId($userId)->whereFollowingUserId($followingUserId)->exists();
     }
 }

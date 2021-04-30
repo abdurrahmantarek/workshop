@@ -27,7 +27,7 @@ class TweetsController extends Controller
 
         }catch (Exception $exception) {
 
-            return response()->json(['error' => $exception->getMessage()], 500 );
+            return response()->json(['error' => 'something went wrong'], 400 );
         }
 
     }

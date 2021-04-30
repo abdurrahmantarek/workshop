@@ -28,13 +28,8 @@ class AlreadyFollowedRule implements Rule
     {
         $followRepository = app(FollowInterface::class);
 
-        return $followRepository->notExist([
-            'user_id' => auth()->id(),
-            'following_user_id' => $value
-        ]);
-
-        //return !auth()->user()->follows()->whereFollowingUserId($value)->exists();
-
+        return !$followRepository->isFollow(
+            auth()->id(), $value);
     }
 
     /**

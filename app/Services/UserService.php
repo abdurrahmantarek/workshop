@@ -4,9 +4,13 @@ namespace App\Services;
 
 use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\UserRepository;
+use App\Traits\ImageUploader;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserService{
+
+    use ImageUploader;
 
     protected $userRepository;
 
@@ -17,22 +21,14 @@ class UserService{
     public function create($userData)
     {
 
-        $image = $this->uploadUserImage($userData);
+        $image = $this->save($userData['image']);
 
         $user = $this->userRepository->store(array_merge($userData, [
-            'password' => bcrypt($userData['password']),
+            'password' => Hash::make($userData['password']),
             'image' => $image
             ]));
 
         return $user;
-    }
-
-    private function uploadUserImage($userData)
-    {
-
-        $image = $userData['image'];
-
-        return $image->store('images');
     }
 
 }

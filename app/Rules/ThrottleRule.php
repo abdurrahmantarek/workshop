@@ -12,9 +12,9 @@ class ThrottleRule implements Rule
 
     protected $key;
     protected $maxAttempts = 5;
-    protected $decayInMinutes = 10;
+    protected $decayInMinutes = 30;
 
-    public function __construct($key, $maxAttempts = 5, $decayInMinutes = 10)
+    public function __construct($key, $maxAttempts = 5, $decayInMinutes = 30)
     {
         $this->key = $key;
         $this->maxAttempts = $maxAttempts;

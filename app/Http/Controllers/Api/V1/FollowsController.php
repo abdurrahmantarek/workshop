@@ -27,13 +27,9 @@ class FollowsController extends Controller
 
             return new FollowResource($follow);
 
-        } catch (ValidationException $exception) {
-
-            return response()->json(['error' => $exception->errors()], 422 );
-
         } catch (Exception $exception) {
 
-            return response()->json(['error' => $exception->getMessage()], 500 );
+            return response()->json(['error' => 'something went wrong'], 400 );
         }
     }
 }
